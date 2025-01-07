@@ -3,15 +3,16 @@ import inquirer from 'inquirer'; // For interactive CLI promtps
 import pkg from 'pg'; // PostgreSQL client
 const { Client } = pkg; 
 
-
+import dotenv from 'dotenv'; // Load environment variables from .env file
+dotenv.config(); // Load environment variables from .env file
 // Configure PostgreSQL client
 // Replace the values with your own PostgreSQL connection details
 const client = new Client({
-    user : 'postgres', // PostgreSQL username
-    host : 'localhost', // Host where the PostgreSQL server is running
-    database: 'employee_management', // Name of the database
-    password: 'codepass', // Password for the PostgreSQL user
-    port: 5432, // Port where the PostgreSQL server is running
+  user: process.env.DB_USER, // PostgreSQL username from .env
+  host: process.env.DB_HOST, // Host where the PostgreSQL server is running
+  database: process.env.DB_DATABASE, // Name of the database from .env
+  password: process.env.DB_PASSWORD, // Password for the PostgreSQL user from .env
+  port: Number(process.env.DB_PORT), // Port where the PostgreSQL server is running
 });
 
 // Connect to the PostgreSQL server
