@@ -1,5 +1,6 @@
 DROP DATABASE IF EXISTS employee_management;
 CREATE DATABASE employee_management;
+\c employee_management;
 
 CREATE TABLE departments (
     id SERIAL PRIMARY KEY,

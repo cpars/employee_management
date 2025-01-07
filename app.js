@@ -87,9 +87,10 @@ async function viewRoles() {
 // View all employees
 async function viewEmployees() {
     // Query to select all employees with their job title, department, salary, and manager
+    // COALESCE is used to display 'None' if the manager is NULL
     const res = await client.query(`SELECT employees.id, employees.first_name, employees.last_name, roles.title AS job_title, 
                                     departments.name AS department, roles.salary, 
-                                    COALESCE(manager.first_name || ' ' || manager.last_name, 'None') AS manager
+                                    COALESCE(manager.first_name || ' ' || manager.last_name, 'None') AS manager 
                                     FROM employees
                                     JOIN roles ON employees.role_id = roles.id
                                     JOIN departments ON roles.department_id = departments.id
